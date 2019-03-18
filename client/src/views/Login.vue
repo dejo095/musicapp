@@ -4,7 +4,7 @@
       <v-flex xs6 offset-xs3>
         <div class="white elevation-2">
           <v-toolbar flat dense color="info" dark>
-            <v-toolbar-title>SignUp</v-toolbar-title>
+            <v-toolbar-title>SignIn</v-toolbar-title>
           </v-toolbar>
 
           <div>
@@ -12,22 +12,17 @@
               v-model="email"
               required></v-text-field>
 
-            <v-text-field
-              class="pl-4 pr-4"
+            <v-text-field class="pl-4 pr-4" label="Password"
               v-model="password"
-              label="Password"
-              required
-            ></v-text-field>
+              required></v-text-field>
 
-            <div
-              class="error"
-              v-html="error">
-                {{error}}>
-            </div>
+            <div class="error" v-html="error">{{error}}></div>
 
-            <v-btn @click="register" color="info">SignUp</v-btn>
+            <v-btn color="info"
+              @click="login"
+              >SignIn</v-btn>
 
-            </div>
+          </div>
 
         </div>
       </v-flex>
@@ -46,11 +41,11 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
 
       try {
 
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
@@ -67,8 +62,5 @@ export default {
 <style lang="stylus" scoped>
   input
     margin: 10px auto;
-
-  .error
-    color: red
 </style>
 
